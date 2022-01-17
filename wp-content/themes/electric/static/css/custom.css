@@ -1,0 +1,6 @@
+.gallery {
+  border-radius: 4px;
+}
+.gallery__item img {
+  max-height: 700px;
+}
