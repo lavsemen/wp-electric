@@ -4,3 +4,12 @@
 .gallery__item img {
   max-height: 700px;
 }
+
+.fact__icon img, object {
+  fill: #1B3CE9;
+  width: 50%;
+  height: 50%;
+}
+.fact__icon > object >svg {
+  fill: #1B3CE9;
+}
