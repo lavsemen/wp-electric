@@ -57,6 +57,7 @@ $pageId = get_the_ID();
         </div>
     </div>
 </section>
+<?php if (!carbon_get_post_meta($pageId, 'promo_disabled')): ?>
 <section class="section" id="section-formula">
     <div class="container">
         <?php
@@ -90,12 +91,14 @@ $pageId = get_the_ID();
         </div>
     </div>
 </section>
+<?php endif;?>
+<?php if (!carbon_get_post_meta($pageId, 'facts_disabled')): ?>
 <section class="section section--colored" id="section-facts">
     <div class="container">
         <?php
         $factsContent = [
             'title' => carbon_get_post_meta($pageId, 'facts_title'),
-            'content' =>  carbon_get_post_meta($pageId, 'facts__content')
+            'content' =>  carbon_get_post_meta($pageId, 'facts_content')
         ]
         ?>
         <div class="section__header">
@@ -131,225 +134,64 @@ $pageId = get_the_ID();
         </div>
     </div>
 </section>
+<?php endif;?>
+<?php if (!carbon_get_post_meta($pageId, 'projects_disabled')): ?>
 <section class="section" id="section-projects">
     <div class="container">
         <?php
-        $projectsCotnent = [
+        $projectsContent = [
             'title' => carbon_get_post_meta($pageId, 'projects_title'),
+            'content' => carbon_get_post_meta($pageId, 'projects_content')
         ]
         ?>
         <div class="section__header">
             <div class="section__header-title">
-                <?= $projectsCotnent['title'] ?>
+                <?= $projectsContent['title'] ?>
             </div>
         </div>
         <div class="section__body">
             <div class="projects swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img class="project-card__image" src="<?= get_template_directory_uri() ?>/static/img/content/projects/project1.jpeg" alt="">
-                            <div class="project-card__content">
-                                <div class="project-card__title">
-                                    2к квартира 65м2
+                    <?php foreach ($projectsContent['content'] as &$arProject):
+
+                        $arProject['icon'] = wp_get_attachment_image_url($arProject['icon'], 'full')
+                    ?>
+
+                        <div class="swiper-slide">
+                            <div class="project-card">
+                                <img class="project-card__image" src="<?=$arProject['icon']?>" alt="">
+                                <div class="project-card__content">
+                                    <?php if ($arProject['title']):?>
+                                    <div class="project-card__title">
+                                        <?=$arProject['title']?>
+                                    </div>
+                                    <?php endif;?>
+                                    <?php if ($arProject['subtitle']):?>
+                                    <div class="project-card__adress">
+                                        <?=$arProject['subtitle']?>
+                                    </div>
+                                    <?php endif;?>
                                 </div>
-                                <div class="project-card__adress">
-                                    ул.Пушкина д.24 кв.104
-                                </div>
-                            </div>
-                            <div class="project-card__aside">
-                                <div class="project-card__aside-title">
-                                    Работа на проекте
-                                </div>
-                                <ul class="project-card__aside-desc">
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                </ul>
-                                <div class="project-card__aside-button">
-                                    <a class="button button--stroke" href=" #section-form ">
-                                        Узнать подробнее
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img class="project-card__image" src="<?= get_template_directory_uri() ?>/static/img/content/projects/project1.jpeg" alt="">
-                            <div class="project-card__content">
-                                <div class="project-card__title">
-                                    2к квартира 65м2
-                                </div>
-                                <div class="project-card__adress">
-                                    ул.Пушкина д.24 кв.104
-                                </div>
-                            </div>
-                            <div class="project-card__aside">
-                                <div class="project-card__aside-title">
-                                    Работа на проекте
-                                </div>
-                                <ul class="project-card__aside-desc">
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                </ul>
-                                <div class="project-card__aside-button">
-                                    <a class="button button--stroke" href=" #section-form ">
-                                        Узнать подробнее
-                                    </a>
+                                <div class="project-card__aside">
+                                    <?php if ($arProject['block_title']):?>
+                                    <div class="project-card__aside-title">
+                                        <?=$arProject['block_title']?>
+                                    </div>
+                                    <?php endif;?>
+                                    <?php if ($arProject['desc']):?>
+                                    <div class="project-card__aside-desc">
+                                        <?= $arProject['desc']?>
+                                    </div>
+                                    <?php endif;?>
+                                    <div class="project-card__aside-button">
+                                        <a class="button button--stroke" href=" #section-form ">
+                                            Узнать подробнее
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img class="project-card__image" src="<?= get_template_directory_uri() ?>/static/img/content/projects/project1.jpeg" alt="">
-                            <div class="project-card__content">
-                                <div class="project-card__title">
-                                    2к квартира 65м2
-                                </div>
-                                <div class="project-card__adress">
-                                    ул.Пушкина д.24 кв.104
-                                </div>
-                            </div>
-                            <div class="project-card__aside">
-                                <div class="project-card__aside-title">
-                                    Работа на проекте
-                                </div>
-                                <ul class="project-card__aside-desc">
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                </ul>
-                                <div class="project-card__aside-button">
-                                    <a class="button button--stroke" href=" #section-form ">
-                                        Узнать подробнее
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img class="project-card__image" src="<?= get_template_directory_uri() ?>/static/img/content/projects/project1.jpeg" alt="">
-                            <div class="project-card__content">
-                                <div class="project-card__title">
-                                    2к квартира 65м2
-                                </div>
-                                <div class="project-card__adress">
-                                    ул.Пушкина д.24 кв.104
-                                </div>
-                            </div>
-                            <div class="project-card__aside">
-                                <div class="project-card__aside-title">
-                                    Работа на проекте
-                                </div>
-                                <ul class="project-card__aside-desc">
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                </ul>
-                                <div class="project-card__aside-button">
-                                    <a class="button button--stroke" href=" #section-form ">
-                                        Узнать подробнее
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img class="project-card__image" src="<?= get_template_directory_uri() ?>/static/img/content/projects/project1.jpeg" alt="">
-                            <div class="project-card__content">
-                                <div class="project-card__title">
-                                    2к квартира 65м2
-                                </div>
-                                <div class="project-card__adress">
-                                    ул.Пушкина д.24 кв.104
-                                </div>
-                            </div>
-                            <div class="project-card__aside">
-                                <div class="project-card__aside-title">
-                                    Работа на проекте
-                                </div>
-                                <ul class="project-card__aside-desc">
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                </ul>
-                                <div class="project-card__aside-button">
-                                    <a class="button button--stroke" href=" #section-form ">
-                                        Узнать подробнее
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="project-card">
-                            <img class="project-card__image" src="<?= get_template_directory_uri() ?>/static/img/content/projects/project1.jpeg" alt="">
-                            <div class="project-card__content">
-                                <div class="project-card__title">
-                                    2к квартира 65м2
-                                </div>
-                                <div class="project-card__adress">
-                                    ул.Пушкина д.24 кв.104
-                                </div>
-                            </div>
-                            <div class="project-card__aside">
-                                <div class="project-card__aside-title">
-                                    Работа на проекте
-                                </div>
-                                <ul class="project-card__aside-desc">
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                    <li>
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, provident.
-                                    </li>
-                                </ul>
-                                <div class="project-card__aside-button">
-                                    <a class="button button--stroke" href=" #section-form ">
-                                        Узнать подробнее
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach;?>
                 </div>
                 <div class="projects__nav">
                     <div class="navigation">
@@ -369,11 +211,14 @@ $pageId = get_the_ID();
         </div>
     </div>
 </section>
+<?php endif;?>
+<?php if (!carbon_get_post_meta($pageId, 'questions_disabled')): ?>
 <section class="section" id="section-faq">
     <div class="container">
         <?php
         $questionsContent = [
-            'title' => carbon_get_post_meta($pageId, 'questions_title')
+            'title' => carbon_get_post_meta($pageId, 'questions_title'),
+            'content' => carbon_get_post_meta($pageId, 'questions_content')
         ]
         ?>
         <div class="section__header">
@@ -384,52 +229,32 @@ $pageId = get_the_ID();
         <div class="section__body">
             <div class="questions">
                 <div class="accordion questions__accordion accordion-flush" id="accordionFlushExample">
+                    <?php foreach ($questionsContent['content'] as $key => $arQuestion): ?>
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                Вопрос 1
+                        <h2 class="accordion-header" id="flush-heading-<?= $key?>">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-<?=$key?>" aria-expanded="false" aria-controls="flush-collapse-<?=$key?>">
+                                <?=$arQuestion['title']?>
                             </button>
                         </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div id="flush-collapse-<?=$key?>" class="accordion-collapse collapse" aria-labelledby="flush-heading-<?= $key?>" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis perferendis quaerat dolor optio officia nihil error, repellat nisi tenetur iusto, ratione sapiente illo accusantium? Suscipit ad quaerat eos nesciunt ratione!
+                                <?=$arQuestion['desc']?>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                Вопрос 2
-                            </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae expedita obcaecati consequatur ab commodi? Iusto ratione, soluta facilis itaque quisquam deserunt alias harum eum dolor esse sit, voluptatem iure quidem!
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                Вопрос 3
-                            </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, corporis asperiores recusandae tempora eius animi a assumenda saepe libero corrupti hic odio in minima quam odit voluptatibus dicta natus accusamus.
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach;?>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php endif;?>
+<?php if (!carbon_get_post_meta($pageId, 'reviews_disabled')): ?>
 <section class="section" id="section-review">
     <div class="container">
         <?php
         $reviewsContent = [
-            'title' => carbon_get_post_meta($pageId, 'reveiws_title')
+            'title' => carbon_get_post_meta($pageId, 'reviews_title')
         ]
         ?>
         <div class="section__header">
@@ -497,6 +322,8 @@ $pageId = get_the_ID();
         </div>
     </div>
 </section>
+<?php endif;?>
+<?php if (!carbon_get_post_meta($pageId, 'services_disabled')): ?>
 <section class="section" id="section-services">
     <div class="container">
         <?php
@@ -585,6 +412,7 @@ $pageId = get_the_ID();
         </div>
     </div>
 </section>
+<?php endif;?>
 <?php if (!carbon_get_post_meta($pageId, 'gallery_disabled')):?>
     <section class="section" id="section-gallery">
     <div class="container">

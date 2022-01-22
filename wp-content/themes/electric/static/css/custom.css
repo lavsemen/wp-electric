@@ -13,3 +13,6 @@
 .fact__icon > object >svg {
   fill: #1B3CE9;
 }
+ul, li, ol {
+  list-style-type: none;
+}
