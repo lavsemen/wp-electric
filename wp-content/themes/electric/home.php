@@ -274,7 +274,7 @@ $pageId = get_the_ID();
                        <div class="reviews-card__aside">
                            <div class="reviews-card__content">
                                <div class="reviews-card__title">
-                                   <span class="reviews-card__index">01</span> <span class="reviews-card__text">Отзыв клиента</span>
+                                  <span class="reviews-card__text">Отзыв клиента</span>
                                </div>
                            </div>
                            <div class="reviews-card__desc">
