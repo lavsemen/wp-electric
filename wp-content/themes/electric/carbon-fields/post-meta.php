@@ -82,12 +82,25 @@ Container::make('post_meta', __('Настройки блоков главной 
 
     ->add_tab('Блок "Отзывы"', [
         Field::make('text', 'reviews_title', 'Заголовок'),
-        Field::make('checkbox', 'reviews_disabled', 'Деактивировать блок')
+        Field::make( 'complex', 'reviews_content', 'Отзывы клиентов')
+            -> add_fields([
+                Field::make('image', 'image', 'Фото'),
+                Field::make('text', 'text', 'Отзыв'),
+                Field::make('text', 'url', 'Ссылка на отзыв'),
+            ]) -> set_max(5),
+        Field::make('checkbox', 'reviews_disabled', 'Деактивировать блок'),
     ])
 
 
     ->add_tab('Блок "Популярные услуги"', [
         Field::make('text', 'services_title', 'Заголовок'),
+        Field::make( 'complex', 'services_content', 'Услгуи')
+            -> add_fields([
+                Field::make('text', 'title', 'Название услуги'),
+                Field::make('textarea', 'text', 'Описание услуги'),
+                Field::make('text', 'price', 'Цена') -> set_width(50),
+                Field::make('text', 'old-price', 'Старая цена') -> set_width(50),
+            ]),
         Field::make('checkbox', 'services_disabled', 'Деактивировать блок')
     ])
 

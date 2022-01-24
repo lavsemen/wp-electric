@@ -254,7 +254,8 @@ $pageId = get_the_ID();
     <div class="container">
         <?php
         $reviewsContent = [
-            'title' => carbon_get_post_meta($pageId, 'reviews_title')
+            'title' => carbon_get_post_meta($pageId, 'reviews_title'),
+            'content' => carbon_get_post_meta($pageId, 'reviews_content')
         ]
         ?>
         <div class="section__header">
@@ -264,60 +265,27 @@ $pageId = get_the_ID();
         </div>
         <div class="section__body">
             <div class="reviews">
-                <div class="reviews-card">
-                    <img src="<?= get_template_directory_uri() ?>/static/img/content/reviews/review.jpeg" alt="">
-                    <div class="reviews-card__aside">
-                        <div class="reviews-card__content">
-                            <div class="reviews-card__title">
-                                <span class="reviews-card__index">01</span> <span class="reviews-card__text">Проводка в квартире</span>
-                            </div>
-                        </div>
-                        <div class="reviews-card__desc">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolor animi sapiente sunt incidunt rerum eaque obcaecati! Dolore doloribus quidem maxime consequuntur? Labore corporis ad sit doloremque minus ex accusamus.
-                        </div>
-                    </div>
-                </div>
-                <div class="reviews-card">
-                    <img src="<?= get_template_directory_uri() ?>/static/img/content/reviews/review2.jpeg" alt="">
-                    <div class="reviews-card__aside">
-                        <div class="reviews-card__content">
-                            <div class="reviews-card__title">
-                                <span class="reviews-card__index">01</span> <span class="reviews-card__text">Проводка в квартире</span>
-                            </div>
-                        </div>
-                        <div class="reviews-card__desc">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolor animi sapiente sunt incidunt rerum eaque obcaecati! Dolore doloribus quidem maxime consequuntur? Labore corporis ad sit doloremque minus ex accusamus.
-                        </div>
-                    </div>
-                </div>
-                <div class="reviews-card">
-                    <img src="<?= get_template_directory_uri() ?>/static/img/content/reviews/review.jpeg" alt="">
-                    <div class="reviews-card__aside">
-                        <div class="reviews-card__content">
-                            <div class="reviews-card__title">
-                                <span class="reviews-card__index">01</span> <span class="reviews-card__text">Проводка в квартире</span>
-                            </div>
-                        </div>
-                        <div class="reviews-card__desc">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolor animi sapiente sunt incidunt rerum eaque obcaecati! Dolore doloribus quidem maxime consequuntur? Labore corporis ad sit doloremque minus ex accusamus.
-                        </div>
-                    </div>
-                </div>
-                <div class="reviews-card">
-                    <img src="<?= get_template_directory_uri() ?>/static/img/content/reviews/review2.jpeg" alt="">
-                    <div class="reviews-card__aside">
-                        <div class="reviews-card__content">
-                            <div class="reviews-card__title">
-                                <span class="reviews-card__index">01</span> <span class="reviews-card__text">Проводка в квартире</span>
-                            </div>
-                        </div>
-                        <div class="reviews-card__desc">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dolor animi sapiente sunt incidunt rerum eaque obcaecati! Dolore doloribus quidem maxime consequuntur? Labore corporis ad sit doloremque minus ex accusamus.
-                        </div>
-                    </div>
-                </div>
+               <?php foreach ($reviewsContent['content'] as $key => $arReview):
+                   $reviewsContent['image'] = wp_get_attachment_image_url($arReview['image'], 'full');
+               ?>
 
-
+                   <div class="reviews-card">
+                       <img src="<?= $reviewsContent['image']?>" alt="">
+                       <div class="reviews-card__aside">
+                           <div class="reviews-card__content">
+                               <div class="reviews-card__title">
+                                   <span class="reviews-card__index">01</span> <span class="reviews-card__text">Отзыв клиента</span>
+                               </div>
+                           </div>
+                           <div class="reviews-card__desc">
+                               <?=$arReview['text']?>
+                           </div>
+                       </div>
+                       <?php if ($arReview['url']): ?>
+                       <a href="<?=$arReview['url']?>" class="reviews-card__link"></a>
+                        <?php endif;?>
+                   </div>
+               <?php endforeach;?>
             </div>
         </div>
     </div>
@@ -328,7 +296,8 @@ $pageId = get_the_ID();
     <div class="container">
         <?php
         $servicesContent = [
-            'title' => carbon_get_post_meta($pageId, 'services_title')
+            'title' => carbon_get_post_meta($pageId, 'services_title'),
+            'content' => carbon_get_post_meta($pageId, 'services_content')
         ]
         ?>
         <div class="section__header">
@@ -338,76 +307,28 @@ $pageId = get_the_ID();
         </div>
         <div class="section__body">
             <div class="services">
+                <?php foreach ($servicesContent['content'] as $arServes): ?>
                 <div class="services__item">
                     <div class="services__content">
                         <div class="services__title">
-                            Подключение электроприборов
+                           <?= $arServes['title']?>
                         </div>
+                        <?php if ( $arServes['text']):?>
                         <div class="services__desc">
-                            Подключение электроплиты, духовых шкафов и других электроприборов.
+                           <?= $arServes['text']?>
                         </div>
+                        <?php endif;?>
                     </div>
                     <div class="services__price">
-                        <span class="services__price--main">1000₽</span>
-                        <del class="services__price--old">2000₽</del>
+                    <?php if ( $arServes['price']):?>
+                        <span class="services__price--main"><?=$arServes['price']?></span>
+                    <?php endif;?>
+                    <?php if ( $arServes['old-price']):?>
+                        <del class="services__price--old"><?=$arServes['old-price']?></del>
+                    <?php endif;?>
                     </div>
                 </div>
-                <div class="services__item">
-                    <div class="services__content">
-                        <div class="services__title">
-                            Подключение электроприборов
-                        </div>
-                        <div class="services__desc">
-                            Подключение электроплиты, духовых шкафов и других электроприборов.
-                        </div>
-                    </div>
-                    <div class="services__price">
-                        <span class="services__price--main">1000₽</span>
-                        <del class="services__price--old">2000₽</del>
-                    </div>
-                </div>
-                <div class="services__item">
-                    <div class="services__content">
-                        <div class="services__title">
-                            Подключение электроприборов
-                        </div>
-                        <div class="services__desc">
-                            Подключение электроплиты, духовых шкафов и других электроприборов.
-                        </div>
-                    </div>
-                    <div class="services__price">
-                        <span class="services__price--main">1000₽</span>
-                        <del class="services__price--old">2000₽</del>
-                    </div>
-                </div>
-                <div class="services__item">
-                    <div class="services__content">
-                        <div class="services__title">
-                            Подключение электроприборов
-                        </div>
-                        <div class="services__desc">
-                            Подключение электроплиты, духовых шкафов и других электроприборов.
-                        </div>
-                    </div>
-                    <div class="services__price">
-                        <span class="services__price--main">1000₽</span>
-                        <del class="services__price--old">2000₽</del>
-                    </div>
-                </div>
-                <div class="services__item">
-                    <div class="services__content">
-                        <div class="services__title">
-                            Подключение электроприборов
-                        </div>
-                        <div class="services__desc">
-                            Подключение электроплиты, духовых шкафов и других электроприборов.
-                        </div>
-                    </div>
-                    <div class="services__price">
-                        <span class="services__price--main">1000₽</span>
-                        <del class="services__price--old">2000₽</del>
-                    </div>
-                </div>
+                <?php endforeach;?>
             </div>
         </div>
     </div>

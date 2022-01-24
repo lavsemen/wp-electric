@@ -16,3 +16,18 @@
 ul, li, ol {
   list-style-type: none;
 }
+.reviews-card img {
+  object-position: top;
+}
+.reviews-card:nth-child(3) {
+  grid-column-end: unset;
+  max-height: 258px;
+}
+.reviews-card__link {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
