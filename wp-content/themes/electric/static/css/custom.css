@@ -1,0 +1,200 @@
+.gallery {
+  border-radius: 4px;
+}
+.gallery__item img {
+  max-height: 700px;
+}
+
+.fact__icon img, object {
+  fill: #67087c;
+  width: 50%;
+  height: 50%;
+}
+.fact__icon > object >svg {
+  fill: #67087c;
+}
+ul, li, ol {
+  list-style-type: none;
+}
+.reviews-card img {
+  object-position: top;
+}
+.reviews-card:nth-child(3) {
+  grid-column-end: unset;
+  max-height: 258px;
+}
+.reviews-card__link {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.header__logo {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.header__logo img {
+  width: 76px;
+  height: 76px;
+  transform: translateY(-1px);
+  object-position: top;
+  object-fit: cover;
+}
+
+@media (max-width: 470px) {
+  .header__logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header__logo img {
+    width: 41px;
+    height: 41px;
+  }
+  .header__item .socials {
+    display: none;
+  }
+}
+
+.accordion-button:focus, .accordion-button:active {
+  box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+  background: #ba60cd21;
+  box-shadow: none;
+  color: #67087c;
+}
+
+.header__nav-item {
+  text-align: center;
+}
+.header__nav-list {
+  max-width: 700px;
+  flex-wrap: wrap;
+  column-gap: 26px;
+  row-gap: 12px;
+}
+
+.footer__menu {
+  column-gap: 26px;
+  flex-wrap: wrap;
+  row-gap: 12px;
+  justify-content: flex-start;
+}
+
+@media (max-width: 1400px) {
+  .header__nav-list {
+    max-width: 400px;
+  }
+}
+.header__items {
+  gap: 25px;
+}
+
+.header__nav-item + * {
+  margin-left: 0;
+}
+.slider__desc > p + p {
+  margin-top: 8px;
+}
+
+.promo__text li + li{
+  margin-top: 12px;
+}
+
+.promo__text ul {
+  padding-left: 0;
+}
+
+.promo__text li {
+  position: relative;
+  line-height: 27px
+}
+
+.promo__text li:before {
+  content: '';
+  display: block;
+  top: 6px;
+  left: -18px;
+  position: absolute;
+  width: 7px;
+  border-radius: 50%;
+  height: 7px;
+  background: #67087c;
+}
+
+.slider__title {
+  text-align: center;
+}
+
+.slider__desc {
+  text-align: center;
+}
+
+.slider__button {
+  display: flex;
+  justify-content: center;
+}
+
+.button, .button:hover {
+  border-radius: 8px;
+}
+
+.main-form__title {
+  text-align: center;
+}
+
+.main-form__desc {
+  text-align: center;
+}
+
+.main-form__field {
+  display: flex;
+  justify-content: center;
+}
+
+.main-form__policy {
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.gallery__item {
+  height: initial;
+}
+
+.gallery__item img {
+  height: 100%;
+}
+
+
+@media (max-width: 768px) {
+  .swiper-button-next, .swiper-button-prev {
+    display: none;
+  }
+
+  .fact {
+    min-height: 150px;
+    text-align: center;
+  }
+}
+
+.map {
+  min-height: 500px;
+  width: 100%
+}
+
+.marker {
+  width: 70px;
+  height: 70px;
+}
